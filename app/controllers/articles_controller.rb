@@ -1,14 +1,30 @@
 class ArticlesController < ApplicationController
     http_basic_authenticate_with name: "kiibo", password: "kiibo", except: [:index, :show]
-  def new
+ helper_method :avg 
+ def new
     @article = Article.new 
   end
+  def avg(id)
+      a = 0
+      sum =0
+      value = 0  
+      @article = Article.find(id)
+      @article.ratings.all.each do |rat|
+           a= a+ 1
+           sum  = sum +  rat.rating         
+      end
+   if sum != 0 
+      '%.2f' % value =  sum / a.to_f 
+   else 
+       value = 0  
+   end 
+end 
   def destroy
      @article = Article.find(params[:id])
      @article.destroy
  
      redirect_to articles_path
-  end 
+  end
   def edit
      @article = Article.find(params[:id])
   end

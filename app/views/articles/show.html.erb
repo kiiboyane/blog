@@ -10,16 +10,16 @@
  
 <h2>Comments</h2>
  <%= render @article.comments %>
- 
+
+<%= render 'ratings/rating' %> 
 <h2>Add a comment:</h2>
  <%= render 'comments/form' %>
 
 <h2>Add a rating</h2>
 <%= form_with(model: [ @article, @article.ratings.build ], local: true) do |form| %>
   <p>
-    <%= form.label :rating %><br>
-    <%= form.text_field :rating %>
-  </p>
+    <%= number_field(:rating ,:rating, in: 1.0..5.0, step: 1) %> 
+ </p>
   <p>
     <%= form.submit %>
   </p>

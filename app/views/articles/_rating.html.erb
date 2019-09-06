@@ -1,0 +1,12 @@
+% d=0 %>
+<% num=0 %>  <% h =0 %>
+<% @article.ratings.each do |rating| %>
+    <% d+=rating.rating %>
+    <% num=num+1 %>
+<% end %>
+
+<% if num != 0 %>
+     <% h = d.to_f / num %>
+<% end %>
+<%=h %>
+

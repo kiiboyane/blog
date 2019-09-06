@@ -13,5 +13,17 @@
  
 <h2>Add a comment:</h2>
  <%= render 'comments/form' %>
+
+<h2>Add a rating</h2>
+<%= form_with(model: [ @article, @article.ratings.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :rating %><br>
+    <%= form.text_field :rating %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
